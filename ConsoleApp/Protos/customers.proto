@@ -1,0 +1,42 @@
+
+syntax = "proto3";
+
+option csharp_namespace = "GrpcService";
+
+package customers;
+
+service Customers {
+
+  rpc GetAll (CustomerGetAllRequest) returns (stream CustomerResponse);
+  rpc Get(CustomerRequest) returns (CustomerResponse);
+  rpc Create(CustomerDTORequest) returns (CustomerResponse);
+  rpc Update(CustomerResponse) returns (CustomerResponse);
+  rpc Block(CustomerRequest) returns (CustomerResponse);
+}
+
+
+message CustomerRequest {
+  int32 id = 1;
+}
+
+message CustomerGetAllRequest{
+
+}
+
+message CustomerDTORequest{
+  string firstName = 1;
+  string lastName = 2;
+  string email = 3;
+  int32 age = 4;
+  bool isBlocked = 5;
+}
+
+message CustomerResponse {
+  int32 id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string email = 4;
+  int32 age = 5;
+  bool isBlocked = 6;
+}
+
